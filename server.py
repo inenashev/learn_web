@@ -11,4 +11,4 @@ def index():
 if __name__=="__main__":
     #weather = weather_by_city("Moscow,Russia")
     #print(weather)
-    app.run(debug=True)
+    app.run()
