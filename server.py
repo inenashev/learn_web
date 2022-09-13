@@ -1,7 +1,8 @@
 from flask import Flask
-app = Flask(__name__)
 from weather import weather_by_city
 
+
+app = Flask(__name__)
 
 @app.route('/')
 def index():
