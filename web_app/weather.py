@@ -1,12 +1,13 @@
 import requests
-import web_app.custom_secrets as custom_secrets
+from flask import current_app
+
 
 
 def weather_by_city(city_name):
     url = "http://api.worldweatheronline.com/premium/v1/weather.ashx"
 
     params = {
-        "key": custom_secrets.weather_token,
+        "key": current_app.config['WEATHER_TOKEN'],
         "q": city_name,
         "format": "json",
         "num_of_days": 1,

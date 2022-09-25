@@ -1,4 +1,4 @@
-/web_app/custom_secrets.py
+/web_app/config.py
 .DStore
 *.iml
 /.idea/
