@@ -4,3 +4,4 @@
 /.idea/
 /venv/
 /python.org.html
+web_app/__pycache__/
