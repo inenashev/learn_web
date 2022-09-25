@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from web_app.weather import weather_by_city
 from web_app.python_org_news import get_python_news
-from web_app.model import db,News
+from web_app.model import db, News
 from web_app.forms import LoginForm
 
 def create_app():
