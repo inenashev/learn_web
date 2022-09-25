@@ -1,12 +1,12 @@
 import requests
-#import custom_secrets
+import custom_secrets
 
 
 def weather_by_city(city_name):
     url = "http://api.worldweatheronline.com/premium/v1/weather.ashx"
 
     params = {
-        "key": "b8b1ac3aa0104a3da7684447221309", #custom_secrets.weather_token,
+        "key": custom_secrets.weather_token,
         "q": city_name,
         "format": "json",
         "num_of_days": 1,
