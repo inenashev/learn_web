@@ -1,5 +1,5 @@
 import requests
-import custom_secrets
+import web_app.custom_secrets as custom_secrets
 
 
 def weather_by_city(city_name):
