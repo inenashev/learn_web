@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title> {{page_text}}} </title>
+    </head>
+    <body>
+    <h1>
+        {% if weather %}
+             Сейчас {{weather.temp_C}}, ощущается как {{weather.FeelsLikeC}}
+        {% else %}
+            Сервис погоды не доступен
+        {% endif %}
+    </h1>
+    </body>
+</html>
