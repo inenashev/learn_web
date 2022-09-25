@@ -1,4 +1,6 @@
 import requests
+from bs4 import BeautifulSoup
+
 
 def get_html(url):
     try:
@@ -10,8 +12,25 @@ def get_html(url):
         return False
 
 
-if __name__ == "__main__":
-    html= get_html("https://www.python.org/blogs/")
+def get_python_news():
+    html = get_html("https://www.python.org/blogs/")
     if html:
-        with open('python.org.html','w',encoding='utf8') as f:
-            f.write(html)
+        soup = BeautifulSoup(html,'html.parser')
+        all_news = soup.find('ul',class_='list-recent-posts')
+        all_news = all_news.findAll("li")
+        result_news = []
+        for news in all_news:
+            title = news.find('a').text
+            url = news.find('a')['href']
+            published = news.find('time').text
+            result_news.append(
+                {
+                    "title": title,
+                    'url': url,
+                    'published': published
+                }
+            )
+        return result_news
+    return False
+
+
