@@ -5,6 +5,8 @@ from web_app.user.models import User
 from web_app.user.views import blueprint as user_blueprint
 from web_app.admin.views import blueprint as admin_blueprint
 from web_app.news.views import blueprint as news_blueprint
+
+
 def create_app():
     app = Flask(__name__, template_folder='../templates')
     app.config.from_pyfile('config.py')
