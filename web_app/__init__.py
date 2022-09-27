@@ -6,7 +6,7 @@ from web_app.model import db, News
 from web_app.user.models import User
 from web_app.user.forms import LoginForm
 from web_app.user.views import blueprint as user_blueprint
-
+from web_app.admin.views import blueprint as admin_blueprint
 
 def create_app():
     app = Flask(__name__, template_folder='../templates')
@@ -17,7 +17,7 @@ def create_app():
     login_manager.init_app(app)
     login_manager.login_view = 'user.login'
     app.register_blueprint(user_blueprint)
-
+    app.register_blueprint(admin_blueprint)
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
@@ -29,12 +29,6 @@ def create_app():
         news_list = News.query.order_by(News.published.desc()).all()
         return render_template("index.html", page_title = page_title, weather=weather, news_list = news_list)
 
-    @app.route('/admin')
-    @login_required
-    def admin_index():
-        if current_user.is_admin:
-            return "Привет админ"
-        else:
-            return("ты не админ")
+
 
     return app
