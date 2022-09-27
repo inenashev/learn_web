@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from flask_login import LoginManager
+from flask import Flask, render_template, flash, redirect, url_for
+from flask_login import LoginManager, login_user
 from web_app.weather import weather_by_city
 from web_app.python_org_news import get_python_news
 from web_app.model import db, News, User
@@ -32,5 +32,19 @@ def create_app():
         title = "Авторизация"
         login_form = LoginForm()
         return render_template("login.html",page_title=title, form=login_form)
+
+
+    @app.route("/process-login", methods=['POST'])
+    def process_login():
+        form = LoginForm()
+        if form.validate_on_submit():
+            user = User.query.filter(User.username == form.username.data).first()
+            if user and user.check_password(form.password.data):
+                login_user(user)
+                flash("вы успешно вошли")
+                return redirect(url_for('index'))
+        flash("Неправильный логин или пароль")
+        return redirect(url_for('login'))
+
 
     return app
