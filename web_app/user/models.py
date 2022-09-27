@@ -1,7 +1,7 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from web_app.model import db
+from web_app.db import db
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer,primary_key=True)
